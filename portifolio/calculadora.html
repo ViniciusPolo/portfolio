@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DotGothic16&display=swap');
+        </style>
+    <style>
+        #res, #res1{
+            width: 344px;
+            height: 80px;
+            margin-bottom: 12px;
+            border-radius: 7px;
+            font-size: 70px;
+            box-shadow: 4px 4px 4px rgba(0,0,0,0.7);
+            font-family: 'DotGothic16', sans-serif;
+            background-color:rgb(35,45,35);
+            color:rgb(116, 255, 2);
+            text-align: right;
+            
+        }
+        #zero,#soma, #ponto,#x,#divisor,#raiz,#porcem,#c, #menos, #um, #dois, #tres, #quatro, #cinco, #seis, #sete, #oito, #nove{
+            margin: 4px;
+            padding: 4px 12px 18px 12px;
+            width: 80px;
+            height: 80px;
+            border-radius: 7px;
+            font-size: 60px;
+            box-shadow: 4px 4px 4px rgba(0,0,0,0.7);
+        }
+        #igual{
+            margin: 4px;
+            padding: 4px 12px 18px 12px;
+            width: 176px;
+            height: 80px;
+            border-radius: 7px;
+            font-size: 60px;
+            box-shadow: 4px 4px 4px rgba(0,0,0,0.7);
+        }
+        #zero:hover, #soma:hover, #ponto:hover,#x:hover, #divisor:hover, #raiz:hover,#porcem:hover, #c:hover, #menos:hover, #um:hover, #dois:hover, #tres:hover, #quatro:hover, #cinco:hover, #seis:hover, #sete:hover, #oito:hover, #nove:hover, #igual:hover{
+            box-shadow: 6px 6px 6px rgba(0,0,0,1);
+            background-color: rgb(200,200,200);
+            text-decoration: 
+        }
+        #corpo{
+            text-align: center;
+            border: 5px gray solid;
+            width: 400px;
+            padding: 12px;
+            border-radius: 7px;
+            background-color: rgb(220, 220, 220);
+        }
+    </style>
+</head>
+<body>
+    <div id="corpo">
+        <input type="text" name="calc" id="res1"><br>
+        <input type="text" name="calc" id="res"><br>
+        <input type="button" value="%" id="porcem" onclick="porcentagem()">
+        <input type="button" value="&#8730" id="raiz" onclick="raiz()">
+        <input type="button" value="/" id="divisor" onclick="divisao()">
+        <input type="button" value="C" id="c" onclick="apagar()"><br>
+        <input type="button" value="7" id="sete" onclick="sete()">
+        <input type="button" value="8" id="oito" onclick="oito()">
+        <input type="button" value="9" id="nove" onclick="nove()">
+        <input type="button" value="x" id="x" onclick="multiplicacao()"><br>
+        <input type="button" value="4" id="quatro" onclick="quatro()">
+        <input type="button" value="5" id="cinco" onclick="cinco()">
+        <input type="button" value="6" id="seis" onclick="seis()">
+        <input type="button" value="-" id="menos" onclick="menos()"><br>
+        <input type="button" value="1" id="um" onclick="um()">
+        <input type="button" value="2" id="dois" onclick="dois()">
+        <input type="button" value="3" id="tres" onclick="tres()">
+        <input type="button" value="+" id="soma" onclick="soma()"><br>
+        <input type="button" value="0" id="zero" onclick="zero()">
+        <input type="button" value="," id="ponto" onclick="ponto()">
+        <input type="button" value="=" id="igual" onclick="igual()">
+    </div>
+    
+    <script>
+        function nove(){
+            document.getElementById('res').value += Number(9)      
+        }
+        function oito(){
+            document.getElementById('res').value += Number(8)            
+        }
+        function sete(){
+            document.getElementById('res').value += Number(7)           
+        }
+        function seis(){
+            document.getElementById('res').value += Number(6)      
+        }
+        function cinco(){
+            document.getElementById('res').value += Number(5)            
+        }
+        function quatro(){
+            document.getElementById('res').value += Number(4)           
+        }
+        function tres(){
+            document.getElementById('res').value += Number(3)      
+        }
+        function dois(){
+            document.getElementById('res').value += Number(2)            
+        }
+        function um(){
+            document.getElementById('res').value += Number(1)           
+        }
+        function zero(){
+            document.getElementById('res').value += Number(0)          
+        }
+        function ponto(){ // não funciona adequadamente
+            document.getElementById('res').value += Number(0.0)        
+        }
+        var res = document.getElementById('res')    
+        var res1 = document.getElementById('res1')
+        var n1= []
+        function soma(){
+            vlr = 0
+            if(res.length!=0){
+                n1.push(Number(res.value))
+                for(var i=0; i<n1.length;i++){
+                    vlr += n1[i]
+                    res1.value = ``
+                    res1.focus()  
+                }    
+            }
+            else{
+                n1.shift(Number(res.value))
+            }
+            res.value = ``
+            res.focus()
+            document.getElementById('res1').value += vlr   
+            vlr = 0
+        }
+        
+        function apagar(){
+            res.value=0
+            res1.value=0
+            res1.value=``
+            res1.focus()
+            res.value=``
+            res.focus()
+            for(var i=n1.length; i>=0;i--){//Limpa o array
+                n1.pop()
+            }
+        }
+        /*function igual(){
+            var res1 = document.getElementById('res1')
+            vlr=0
+            if(res.length!=0){
+                n1.push(Number(res.value))
+                for(var i=0; i<n1.length;i++){
+                    vlr += n1[i]
+                    res1.value = ``
+                    res1.focus()  
+                }    
+            }
+            else{
+                n1.shift(Number(res.value))
+            }
+            res.value = ``
+            res.focus()
+            document.getElementById('res1').value += vlr   
+            vlr = 0
+        }
+        function menos(){
+            var res1 = document.getElementById('res1')
+            vlr=0
+            if(res.length!=0){
+                n1.push(Number(res.value))
+                for(var i=0; i<n1.length;i++){
+                    vlr = n1[i]-vlr
+                    res1.value = ``
+                    res1.focus()  
+                }    
+            }
+            else{
+                n1.shift(Number(res.value))
+            }
+            res.value = ``
+            res.focus()
+            document.getElementById('res1').value += vlr   
+            vlr = 0
+        }
+        */
+        
+    </script>
+</body>
+</html>
